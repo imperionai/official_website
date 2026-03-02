@@ -25,7 +25,7 @@
   }
 
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--font-body); overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-body); overflow-x: hidden; width: 100%; max-width: 100vw; }
 
   #bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.45; }
 
@@ -71,7 +71,7 @@
 
   /* Mobile menu */
   .mobile-menu {
-    display: none; position: fixed; top: 66px; left: 0; right: 0; z-index: 199;
+    display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 199;
     background: rgba(6,8,15,0.97); backdrop-filter: blur(24px);
     border-bottom: 1px solid var(--border);
     padding: 24px 32px 32px;
@@ -120,7 +120,7 @@
   }
   .grad { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .hero-sub {
-    font-size: 1.05rem; color: var(--sub); max-width: 560px; margin: 0 auto 42px;
+    font-size: 1.05rem; color: var(--sub); max-width: 560px; width: 100%; margin: 0 auto 42px;
     line-height: 1.72; font-weight: 300; animation: fadeUp 0.7s 0.2s ease both;
   }
   .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; animation: fadeUp 0.7s 0.3s ease both; }
@@ -391,31 +391,97 @@
   }
 
   /* ── RESPONSIVE ── */
+
+
+  /* ── TABLET ── */
   @media (max-width: 1024px) {
     .services-grid { grid-template-columns: repeat(2, 1fr); }
     .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
     .footer-top { grid-template-columns: 1fr 1fr; }
     .footer-brand { grid-column: 1 / -1; }
+    .contact-inner { grid-template-columns: 1fr; }
+    .cta-box { padding: 60px 40px; }
   }
+
+  /* ── MOBILE ── */
   @media (max-width: 768px) {
-    .container { padding: 0 24px; }
-    .nav-inner { padding: 0 24px; }
+    .container { padding: 0 20px; }
+    .nav-inner { padding: 0 20px; }
     .nav-links, .btn-nav { display: none; }
     .hamburger { display: flex; }
-    .drives-grid, .team-grid, .stats-grid { grid-template-columns: 1fr; }
-    .contact-inner { grid-template-columns: 1fr; }
-    .services-grid { grid-template-columns: 1fr; }
-    .hero-btns { flex-direction: column; align-items: center; }
-    .cta-box, .stats-box { padding: 48px 24px; }
-    .footer-top { grid-template-columns: 1fr; gap: 36px; }
-    .footer-brand { grid-column: auto; }
-    h1.hero-title { font-size: clamp(2.2rem, 8vw, 3.5rem); }
+
+    /* Hero */
+    .hero { padding: 100px 0 60px; }
+    h1.hero-title { font-size: clamp(2rem, 9vw, 3rem); letter-spacing: -0.02em; }
+    .hero-sub { font-size: 0.95rem; max-width: 100%; padding: 0 4px; }
+    .hero-badge { font-size: 0.72rem; padding: 6px 14px; }
+    .hero-btns { flex-direction: column; align-items: center; width: 100%; gap: 12px; }
+    .btn-primary, .btn-outline { width: 100%; max-width: 300px; justify-content: center; }
+
+    /* Grids → single column */
+    .services-grid { grid-template-columns: 1fr; gap: 16px; }
+    .drives-grid   { grid-template-columns: 1fr; gap: 16px; }
+    .team-grid     { grid-template-columns: 1fr; gap: 16px; }
+    .stats-grid    { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .contact-inner { grid-template-columns: 1fr; gap: 20px; }
+
+    /* Sections padding */
+    .services, .drives, .team, .contact { padding: 70px 0; }
+    .stats-wrap { padding: 0 0 70px; }
+    .cta-section { padding: 20px 0 70px; }
+
+    /* Cards */
+    .svc-card    { padding: 28px 22px; }
+    .drives-card { padding: 36px 24px; }
+    .team-card   { padding: 32px 20px; }
+
+    /* Stats */
+    .stats-box { padding: 44px 20px; }
+    .stats-box h2 { margin-bottom: 36px; }
+    .stat-num { font-size: clamp(2rem, 10vw, 3rem); }
+
+    /* CTA */
+    .cta-box { padding: 44px 20px; }
+    .cta-box h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
+    .btn-cta { width: 100%; max-width: 300px; justify-content: center; }
+
+    /* Contact */
+    .contact-info  { padding: 28px 20px; }
+    .contact-form  { padding: 28px 20px; }
+    .ci-val { font-size: 0.85rem; }
+
+    /* Section header */
+    .sec-head { margin-bottom: 40px; }
+    .sec-head h2 { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+    .sec-head p  { font-size: 0.9rem; }
+
+    /* Footer */
+    .footer-top    { grid-template-columns: 1fr; gap: 32px; padding-bottom: 36px; }
+    .footer-brand  { grid-column: auto; }
+    .footer-col h4 { margin-bottom: 14px; }
+    footer         { padding: 48px 0 0; }
+
+    /* Disable 3D tilt on touch devices */
+    .svc-card:hover, .drives-card:hover, .team-card:hover,
+    .stats-box:hover, .cta-box:hover { transform: none !important; }
   }
+
+  /* ── SMALL MOBILE ── */
   @media (max-width: 480px) {
     .container { padding: 0 16px; }
-    .nav-inner { padding: 0 16px; }
-    .mobile-menu { padding: 20px 20px 28px; }
-    .hero { padding: 110px 0 70px; }
+    .nav-inner  { padding: 0 16px; }
+    .mobile-menu { padding: 20px 16px 28px; top: 62px; }
+    h1.hero-title { font-size: clamp(1.8rem, 10vw, 2.6rem); }
+    .hero-sub { font-size: 0.9rem; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .stat-num { font-size: clamp(1.8rem, 8vw, 2.5rem); }
+    .team-avatar { width: 88px; height: 88px; }
+    .drives-icon { width: 56px; height: 56px; font-size: 1.5rem; }
+    .svc-icon { width: 44px; height: 44px; font-size: 1.3rem; }
+    .contact-item { gap: 12px; }
+    .footer-connect-item { flex-wrap: wrap; }
+    .btn-primary, .btn-outline, .btn-cta { padding: 13px 24px; font-size: 0.875rem; }
   }
 </style>
 </head>
@@ -636,7 +702,7 @@
           <div>
             <div class="ci-label">Email</div>
             <div class="ci-val">
-              <a href="/cdn-cgi/l/email-protection#a5ccc8d5c0d7cccacbc4cccac3c3ccc6ccc4c9e5c2c8c4ccc98bc6cac8" target="_blank"><span class="__cf_email__" data-cfemail="0a63677a6f786365646b63656c6c6369636b664a6d676b636624696567">[email&#160;protected]</span></a>
+              <a id="email-link-0" href="#" onclick="this.href='mai'+'lto:'+'imperionaiofficial'+'@'+'gmail.com'; return false;" style="color:var(--sub); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--sub)'">imperionaiofficial@gmail.com</a>
             </div>
           </div>
         </div>
@@ -698,7 +764,7 @@
         <div class="footer-connect">
           <div class="footer-connect-item">
             <span class="fc-icon">✉️</span>
-            <a href="/cdn-cgi/l/email-protection#395054495c4b5056575850565f5f505a505855795e54585055175a5654" target="_blank"><span class="__cf_email__" data-cfemail="2d44405d485f4442434c44424b4b444e444c416d4a404c4441034e4240">[email&#160;protected]</span></a>
+            <a id="email-link-1" href="#" onclick="this.href='mai'+'lto:'+'imperionaiofficial'+'@'+'gmail.com'; return false;" style="color:var(--sub); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--sub)'">imperionaiofficial@gmail.com</a>
           </div>
           <div class="footer-connect-item">
             <span class="fc-icon">📞</span>
@@ -717,7 +783,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // Particle canvas
 const canvas = document.getElementById("bg-canvas");
 const ctx = canvas.getContext("2d");
