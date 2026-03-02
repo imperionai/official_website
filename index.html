@@ -40,7 +40,7 @@
   .nav-inner {
     display: flex; align-items: center; justify-content: space-between;
     max-width: 1200px; margin: 0 auto; padding: 0 48px;
-    gap: 16px;
+    gap: 12px; min-height: 56px;
   }
   .logo-img {
     height: 36px; width: auto; display: block;
@@ -66,10 +66,11 @@
 
   /* Hamburger */
   .hamburger {
-    display: none; flex-direction: column; gap: 5px; cursor: pointer;
-    padding: 8px; background: none; border: none; flex-shrink: 0;
+    display: none; flex-direction: column; justify-content: center; gap: 5px;
+    cursor: pointer; padding: 6px; background: none; border: none;
+    flex-shrink: 0; min-width: 36px; min-height: 36px;
   }
-  .hamburger span { display: block; width: 26px; height: 2.5px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: #e8eaf0; border-radius: 2px; transition: all 0.3s; }
   .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
   .hamburger.open span:nth-child(2) { opacity: 0; }
   .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
@@ -411,11 +412,11 @@
 
   /* ── MOBILE ── */
   @media (max-width: 768px) {
-    .container { padding: 0 20px; }
-    .nav-inner { padding: 0 16px; gap: 8px; }
+    .container { padding: 0 16px; }
+    .nav-inner { padding: 0 14px; gap: 8px; min-height: 52px; }
     .nav-links, .btn-nav { display: none; }
-    .hamburger { display: flex; }
-    .logo-img { height: 30px; padding: 3px 8px; max-width: 130px; }
+    .hamburger { display: flex !important; flex-shrink: 0; }
+    .logo-img { height: 28px; padding: 2px 8px; max-width: 120px; width: auto; }
 
     /* Hero */
     .hero { padding: 100px 0 60px; }
@@ -475,10 +476,11 @@
 
   /* ── SMALL MOBILE ── */
   @media (max-width: 480px) {
-    .container { padding: 0 14px; }
-    .nav-inner  { padding: 0 14px; gap: 6px; }
-    .mobile-menu { padding: 20px 16px 28px; top: 60px; }
-    .logo-img { height: 28px; padding: 2px 7px; max-width: 120px; }
+    .container { padding: 0 12px; }
+    .nav-inner  { padding: 0 12px; gap: 6px; }
+    .mobile-menu { padding: 20px 16px 28px; top: 52px; }
+    .logo-img { height: 26px; padding: 2px 6px; max-width: 110px; }
+    .hamburger span { width: 20px; }
     h1.hero-title { font-size: clamp(1.8rem, 10vw, 2.6rem); }
     .hero-sub { font-size: 0.9rem; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
@@ -709,7 +711,7 @@
           <div>
             <div class="ci-label">Email</div>
             <div class="ci-val">
-              <a id="email-link-0" href="#" onclick="this.href='mai'+'lto:'+'imperionaiofficial'+'@'+'gmail.com'; return false;" style="color:var(--sub); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--sub)'"><span class="__cf_email__" data-cfemail="acc5c1dcc9dec5c3c2cdc5c3cacac5cfc5cdc0eccbc1cdc5c082cfc3c1">[email&#160;protected]</span></a>
+              <span id="contact-email" style="cursor:pointer; transition:color 0.2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color=''"></span>
             </div>
           </div>
         </div>
@@ -771,7 +773,7 @@
         <div class="footer-connect">
           <div class="footer-connect-item">
             <span class="fc-icon">✉️</span>
-            <a id="email-link-1" href="#" onclick="this.href='mai'+'lto:'+'imperionaiofficial'+'@'+'gmail.com'; return false;" style="color:var(--sub); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--sub)'"><span class="__cf_email__" data-cfemail="187175687d6a7177767971777e7e717b717974587f75797174367b7775">[email&#160;protected]</span></a>
+            <span id="footer-email"  style="cursor:pointer; transition:color 0.2s;" onmouseover="this.style.color='#fff'"     onmouseout="this.style.color=''"></span>
           </div>
           <div class="footer-connect-item">
             <span class="fc-icon">📞</span>
@@ -968,6 +970,30 @@ function sendMail() {
   document.getElementById("f-email").value = "";
   document.getElementById("f-msg").value   = "";
 }
+
+// ── Inject email addresses via JS (bypasses Cloudflare email protection) ──
+(function() {
+  var u = 'imperionaiofficial';
+  var d = 'gmail.com';
+  var full = u + '@' + d;
+  var mailto = 'mailto:' + full;
+
+  var els = [
+    { id: 'contact-email', color: 'var(--sub)' },
+    { id: 'footer-email',  color: 'var(--sub)' }
+  ];
+
+  els.forEach(function(item) {
+    var el = document.getElementById(item.id);
+    if (!el) return;
+    el.textContent = full;
+    el.style.color = item.color;
+    el.setAttribute('title', 'Click to send email');
+    el.addEventListener('click', function() {
+      window.location.href = mailto;
+    });
+  });
+})();
 </script>
 </body>
 </html>
