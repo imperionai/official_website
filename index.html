@@ -35,12 +35,13 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 200;
     padding: 12px 0; border-bottom: 1px solid transparent; transition: all 0.4s;
+    width: 100%; box-sizing: border-box;
   }
   nav.scrolled { background: rgba(6,8,15,0.94); backdrop-filter: blur(24px); border-bottom-color: var(--border); }
   .nav-inner {
     display: flex; align-items: center; justify-content: space-between;
     max-width: 1200px; margin: 0 auto; padding: 0 48px;
-    gap: 12px; min-height: 56px;
+    gap: 12px; min-height: 56px; width: 100%; box-sizing: border-box;
   }
   .logo-img {
     height: 36px; width: auto; display: block;
@@ -67,8 +68,8 @@
   /* Hamburger */
   .hamburger {
     display: none; flex-direction: column; justify-content: center; gap: 5px;
-    cursor: pointer; padding: 6px; background: none; border: none;
-    flex-shrink: 0; min-width: 36px; min-height: 36px;
+    cursor: pointer; padding: 6px 4px; background: none; border: none;
+    flex-shrink: 0; width: 36px; height: 36px; margin-right: 0;
   }
   .hamburger span { display: block; width: 22px; height: 2px; background: #e8eaf0; border-radius: 2px; transition: all 0.3s; }
   .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
@@ -413,10 +414,10 @@
   /* ── MOBILE ── */
   @media (max-width: 768px) {
     .container { padding: 0 16px; }
-    .nav-inner { padding: 0 14px; gap: 8px; min-height: 52px; }
+    .nav-inner { padding: 0 16px; gap: 0; min-height: 52px; width: 100%; box-sizing: border-box; }
     .nav-links, .btn-nav { display: none; }
-    .hamburger { display: flex !important; flex-shrink: 0; }
-    .logo-img { height: 28px; padding: 2px 8px; max-width: 120px; width: auto; }
+    .hamburger { display: flex !important; flex-shrink: 0; margin-right: 0; }
+    .logo-img { height: 28px; padding: 2px 8px; max-width: 140px; width: auto; flex-shrink: 1; }
 
     /* Hero */
     .hero { padding: 100px 0 60px; }
@@ -477,9 +478,10 @@
   /* ── SMALL MOBILE ── */
   @media (max-width: 480px) {
     .container { padding: 0 12px; }
-    .nav-inner  { padding: 0 12px; gap: 6px; }
+    .nav-inner  { padding: 0 12px; gap: 0; width: 100%; box-sizing: border-box; }
     .mobile-menu { padding: 20px 16px 28px; top: 52px; }
-    .logo-img { height: 26px; padding: 2px 6px; max-width: 110px; }
+    .logo-img { height: 24px; padding: 2px 6px; max-width: 110px; flex-shrink: 1; }
+    .hamburger { width: 32px; height: 32px; padding: 5px 4px; }
     .hamburger span { width: 20px; }
     h1.hero-title { font-size: clamp(1.8rem, 10vw, 2.6rem); }
     .hero-sub { font-size: 0.9rem; }
