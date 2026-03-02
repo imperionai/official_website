@@ -34,19 +34,21 @@
   /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-    padding: 14px 0; border-bottom: 1px solid transparent; transition: all 0.4s;
+    padding: 12px 0; border-bottom: 1px solid transparent; transition: all 0.4s;
   }
   nav.scrolled { background: rgba(6,8,15,0.94); backdrop-filter: blur(24px); border-bottom-color: var(--border); }
   .nav-inner {
     display: flex; align-items: center; justify-content: space-between;
     max-width: 1200px; margin: 0 auto; padding: 0 48px;
+    gap: 16px;
   }
   .logo-img {
-    height: 40px; width: auto; display: block;
+    height: 36px; width: auto; display: block;
     background: #fff;
     border-radius: 8px;
-    padding: 4px 10px;
+    padding: 3px 10px;
     object-fit: contain;
+    max-width: 160px;
   }
   .nav-links { display: flex; gap: 32px; list-style: none; }
   .nav-links a {
@@ -63,15 +65,18 @@
   .btn-nav:hover { opacity: 0.88; transform: translateY(-1px); }
 
   /* Hamburger */
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
-  .hamburger span { display: block; width: 24px; height: 2px; background: var(--sub); border-radius: 2px; transition: all 0.3s; }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    padding: 8px; background: none; border: none; flex-shrink: 0;
+  }
+  .hamburger span { display: block; width: 26px; height: 2.5px; background: #fff; border-radius: 2px; transition: all 0.3s; }
   .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
   .hamburger.open span:nth-child(2) { opacity: 0; }
   .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
   /* Mobile menu */
   .mobile-menu {
-    display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 199;
+    display: none; position: fixed; top: 62px; left: 0; right: 0; z-index: 199;
     background: rgba(6,8,15,0.97); backdrop-filter: blur(24px);
     border-bottom: 1px solid var(--border);
     padding: 24px 32px 32px;
@@ -407,9 +412,10 @@
   /* ── MOBILE ── */
   @media (max-width: 768px) {
     .container { padding: 0 20px; }
-    .nav-inner { padding: 0 20px; }
+    .nav-inner { padding: 0 16px; gap: 8px; }
     .nav-links, .btn-nav { display: none; }
     .hamburger { display: flex; }
+    .logo-img { height: 30px; padding: 3px 8px; max-width: 130px; }
 
     /* Hero */
     .hero { padding: 100px 0 60px; }
@@ -469,9 +475,10 @@
 
   /* ── SMALL MOBILE ── */
   @media (max-width: 480px) {
-    .container { padding: 0 16px; }
-    .nav-inner  { padding: 0 16px; }
-    .mobile-menu { padding: 20px 16px 28px; top: 62px; }
+    .container { padding: 0 14px; }
+    .nav-inner  { padding: 0 14px; gap: 6px; }
+    .mobile-menu { padding: 20px 16px 28px; top: 60px; }
+    .logo-img { height: 28px; padding: 2px 7px; max-width: 120px; }
     h1.hero-title { font-size: clamp(1.8rem, 10vw, 2.6rem); }
     .hero-sub { font-size: 0.9rem; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
@@ -702,7 +709,7 @@
           <div>
             <div class="ci-label">Email</div>
             <div class="ci-val">
-              <a id="email-link-0" href="#" onclick="this.href='mai'+'lto:'+'imperionaiofficial'+'@'+'gmail.com'; return false;" style="color:var(--sub); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--sub)'">imperionaiofficial@gmail.com</a>
+              <a id="email-link-0" href="#" onclick="this.href='mai'+'lto:'+'imperionaiofficial'+'@'+'gmail.com'; return false;" style="color:var(--sub); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--sub)'"><span class="__cf_email__" data-cfemail="acc5c1dcc9dec5c3c2cdc5c3cacac5cfc5cdc0eccbc1cdc5c082cfc3c1">[email&#160;protected]</span></a>
             </div>
           </div>
         </div>
@@ -764,7 +771,7 @@
         <div class="footer-connect">
           <div class="footer-connect-item">
             <span class="fc-icon">✉️</span>
-            <a id="email-link-1" href="#" onclick="this.href='mai'+'lto:'+'imperionaiofficial'+'@'+'gmail.com'; return false;" style="color:var(--sub); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--sub)'">imperionaiofficial@gmail.com</a>
+            <a id="email-link-1" href="#" onclick="this.href='mai'+'lto:'+'imperionaiofficial'+'@'+'gmail.com'; return false;" style="color:var(--sub); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--sub)'"><span class="__cf_email__" data-cfemail="187175687d6a7177767971777e7e717b717974587f75797174367b7775">[email&#160;protected]</span></a>
           </div>
           <div class="footer-connect-item">
             <span class="fc-icon">📞</span>
@@ -784,55 +791,75 @@
 </footer>
 
 <script>
-// Particle canvas
+// ── Particle canvas ──
 const canvas = document.getElementById("bg-canvas");
 const ctx = canvas.getContext("2d");
 let W, H, pts = [];
 function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
-resize(); window.addEventListener("resize", resize);
-for (let i = 0; i < 70; i++) pts.push({ x: Math.random()*1920, y: Math.random()*1080, r: Math.random()*1.2+0.3, vx: (Math.random()-.5)*.25, vy: (Math.random()-.5)*.25, o: Math.random()*.4+0.1 });
+resize();
+window.addEventListener("resize", resize);
+for (let i = 0; i < 70; i++) {
+  pts.push({ x: Math.random()*1920, y: Math.random()*1080, r: Math.random()*1.2+0.3, vx: (Math.random()-0.5)*0.25, vy: (Math.random()-0.5)*0.25, o: Math.random()*0.4+0.1 });
+}
 (function draw() {
-  ctx.clearRect(0,0,W,H);
-  for (let i=0;i<pts.length;i++) for (let j=i+1;j<pts.length;j++) {
-    const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.hypot(dx,dy);
-    if (d<130) { ctx.beginPath(); ctx.strokeStyle="rgba(0,200,220,"+(1-d/130)*.07+")"; ctx.lineWidth=.5; ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.stroke(); }
+  ctx.clearRect(0, 0, W, H);
+  for (let i = 0; i < pts.length; i++) {
+    for (let j = i+1; j < pts.length; j++) {
+      const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y, d = Math.hypot(dx, dy);
+      if (d < 130) {
+        ctx.beginPath();
+        ctx.strokeStyle = "rgba(0,200,220," + ((1 - d/130) * 0.07) + ")";
+        ctx.lineWidth = 0.5;
+        ctx.moveTo(pts[i].x, pts[i].y);
+        ctx.lineTo(pts[j].x, pts[j].y);
+        ctx.stroke();
+      }
+    }
   }
-  pts.forEach(p => {
-    p.x+=p.vx; p.y+=p.vy;
-    if(p.x<0)p.x=W; if(p.x>W)p.x=0; if(p.y<0)p.y=H; if(p.y>H)p.y=0;
-    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle="rgba(0,200,220,"+p.o+")"; ctx.fill();
+  pts.forEach(function(p) {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+    if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(0,200,220," + p.o + ")";
+    ctx.fill();
   });
   requestAnimationFrame(draw);
 })();
 
-// Nav scroll
+// ── Nav scroll ──
 const nav = document.getElementById("nav");
-window.addEventListener("scroll", () => nav.classList.toggle("scrolled", window.scrollY > 40));
+window.addEventListener("scroll", function() {
+  nav.classList.toggle("scrolled", window.scrollY > 40);
+});
 
-// Hamburger
+// ── Hamburger menu ──
 const ham = document.getElementById("hamburger");
 const mob = document.getElementById("mobile-menu");
-ham.addEventListener("click", () => {
+ham.addEventListener("click", function() {
   ham.classList.toggle("open");
   mob.classList.toggle("open");
 });
-document.querySelectorAll(".mob-link, .btn-mob").forEach(a => {
-  a.addEventListener("click", () => { ham.classList.remove("open"); mob.classList.remove("open"); });
+document.querySelectorAll(".mob-link, .btn-mob").forEach(function(a) {
+  a.addEventListener("click", function() {
+    ham.classList.remove("open");
+    mob.classList.remove("open");
+  });
 });
 
-// ── Enhanced scroll reveal (both directions) ──
+// ── Scroll reveal (both directions) ──
 const revealSelectors = ".reveal, .reveal-left, .reveal-right, .reveal-zoom, .reveal-flip";
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
+const obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
     if (e.isIntersecting) {
       e.target.classList.add("visible");
     } else {
-      // Remove on scroll up so it re-animates
       e.target.classList.remove("visible");
     }
   });
 }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
-document.querySelectorAll(revealSelectors).forEach(r => obs.observe(r));
+document.querySelectorAll(revealSelectors).forEach(function(r) { obs.observe(r); });
 
 // ── Smooth scroll with custom easing ──
 function smoothScrollTo(targetEl) {
@@ -841,7 +868,7 @@ function smoothScrollTo(targetEl) {
   const dist = targetY - startY;
   const duration = Math.min(Math.abs(dist) * 0.4 + 400, 1000);
   let startTime = null;
-  function ease(t) { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2; }
+  function ease(t) { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2; }
   function step(now) {
     if (!startTime) startTime = now;
     const elapsed = now - startTime;
@@ -851,91 +878,95 @@ function smoothScrollTo(targetEl) {
   }
   requestAnimationFrame(step);
 }
-document.querySelectorAll("a[href^='#']").forEach(a => a.addEventListener("click", e => {
-  const t = document.querySelector(a.getAttribute("href"));
-  if (t) {
-    e.preventDefault();
-    smoothScrollTo(t);
-    mob.classList.remove("open");
-    ham.classList.remove("open");
-  }
-}));
+document.querySelectorAll("a[href^='#']").forEach(function(a) {
+  a.addEventListener("click", function(e) {
+    const t = document.querySelector(a.getAttribute("href"));
+    if (t) {
+      e.preventDefault();
+      smoothScrollTo(t);
+      mob.classList.remove("open");
+      ham.classList.remove("open");
+    }
+  });
+});
 
-// ── 3D card tilt on mouse move (all card types) ──
+// ── 3D card tilt ──
 function initTilt(selector) {
-  document.querySelectorAll(selector).forEach(card => {
+  document.querySelectorAll(selector).forEach(function(card) {
     card.style.willChange = "transform";
-    card.addEventListener("mousemove", e => {
+    card.addEventListener("mousemove", function(e) {
       const r = card.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width  - 0.5;
       const y = (e.clientY - r.top)  / r.height - 0.5;
       card.style.transition = "transform 0.08s linear";
-      card.style.transform  = `perspective(700px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg) translateY(-6px) scale(1.025)`;
+      card.style.transform  = "perspective(700px) rotateY(" + (x*12) + "deg) rotateX(" + (-y*12) + "deg) translateY(-6px) scale(1.025)";
     });
-    card.addEventListener("mouseleave", () => {
+    card.addEventListener("mouseleave", function() {
       card.style.transition = "transform 0.55s cubic-bezier(0.22,1,0.36,1)";
       card.style.transform  = "perspective(700px) rotateY(0deg) rotateX(0deg) translateY(0px) scale(1)";
-      setTimeout(() => { card.style.transform = ""; card.style.transition = ""; }, 560);
+      setTimeout(function() { card.style.transform = ""; card.style.transition = ""; }, 560);
     });
-    card.addEventListener("mouseenter", () => {
+    card.addEventListener("mouseenter", function() {
       card.style.transition = "transform 0.15s ease";
     });
   });
 }
-// Apply to ALL card types
 initTilt(".svc-card");
 initTilt(".drives-card");
 initTilt(".team-card");
 initTilt(".stats-box");
 initTilt(".cta-box");
 
-
 // ── Parallax on hero glow ──
-window.addEventListener("scroll", () => {
+window.addEventListener("scroll", function() {
   const glow = document.querySelector(".hero-glow");
-  if (glow) glow.style.transform = `translate(-50%, calc(-58% + ${window.scrollY * 0.15}px))`;
+  if (glow) glow.style.transform = "translate(-50%, calc(-58% + " + (window.scrollY * 0.15) + "px))";
 });
 
-// Counter animation
+// ── Counter animation ──
 function animateCounter(el, target, suffix) {
-  let start = null, dur = 1800;
-  const step = ts => {
+  let start = null;
+  const dur = 1800;
+  function step(ts) {
     if (!start) start = ts;
-    const p = Math.min((ts-start)/dur, 1);
-    const e = 1 - Math.pow(1-p, 3);
-    el.textContent = Math.floor(e*target) + suffix;
+    const p = Math.min((ts - start) / dur, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.floor(eased * target) + suffix;
     if (p < 1) requestAnimationFrame(step);
-  };
+  }
   requestAnimationFrame(step);
 }
-const sobs = new IntersectionObserver(entries => entries.forEach(e => {
-  if (e.isIntersecting) {
-    const el = e.target;
-    animateCounter(el, parseInt(el.dataset.target), el.dataset.suffix || "");
-    sobs.unobserve(el);
-  }
-}), { threshold: 0.5 });
-document.querySelectorAll(".stat-num[data-target]").forEach(el => sobs.observe(el));
+const sobs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      const el = e.target;
+      animateCounter(el, parseInt(el.dataset.target), el.dataset.suffix || "");
+      sobs.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll(".stat-num[data-target]").forEach(function(el) { sobs.observe(el); });
 
-// Contact form -> mailto
+// ── Contact form send ──
 function sendMail() {
-  const name = document.getElementById("f-name").value.trim();
-  const email = document.getElementById("f-email").value.trim();
-  const msg = document.getElementById("f-msg").value.trim();
-  const msgEl = document.getElementById("form-msg");
+  var name  = document.getElementById("f-name").value.trim();
+  var email = document.getElementById("f-email").value.trim();
+  var msg   = document.getElementById("f-msg").value.trim();
+  var msgEl = document.getElementById("form-msg");
   if (!name || !email || !msg) {
-    msgEl.className = "form-msg error";
+    msgEl.className   = "form-msg error";
     msgEl.textContent = "Please fill in all fields before sending.";
     return;
   }
-  const subject = encodeURIComponent("New Contact from " + name + " via Imperion AI Website");
-  const body = encodeURIComponent( + msg);
-  window.open("mailto:imperionaiofficial@gmail.com?subject=" + subject + "&body=" + body, "_blank");
-  msgEl.className = "form-msg success";
-  msgEl.textContent = "✓ Your mail client has opened. Please send the email to reach us!";
-  document.getElementById("f-name").value = "";
+  var subject = encodeURIComponent("New Contact from " + name + " via Imperion AI Website");
+  var body    = encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\nMessage:\n" + msg);
+  var mailto  = "mailto:imperionaiofficial@gmail.com?subject=" + subject + "&body=" + body;
+  window.open(mailto, "_blank");
+  msgEl.className   = "form-msg success";
+  msgEl.textContent = "\u2713 Your mail client has opened. Please send the email to reach us!";
+  document.getElementById("f-name").value  = "";
   document.getElementById("f-email").value = "";
-  document.getElementById("f-msg").value = "";
+  document.getElementById("f-msg").value   = "";
 }
 </script>
 </body>
